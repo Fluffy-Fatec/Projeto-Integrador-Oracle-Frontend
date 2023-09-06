@@ -1,59 +1,49 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="#393E3B"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="@/assets/oraclelogo.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <span class="mr-2">OracleDine   |</span>
-        <span class="mr-2">RestaurantName</span>
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <v-icon>mdi-account-circle-outline</v-icon>
-      </v-btn>
-    </v-app-bar>
+    <!-- Componente TopBar fixo no topo -->
+    <TopBar class="fixed-top" />
 
     <v-main>
-      <HelloWorld/>
+      <v-row>
+        <v-col cols="3">
+          <!-- Componente SideBar -->
+          <SideBar class="mt-12" />
+        </v-col>
+
+        <v-col cols="9">
+          <!-- Conteúdo principal do aplicativo -->
+          <router-view />
+        </v-col>
+      </v-row>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import SideBar from "@/components/SideBar"; // Importe o componente SideBar
+import TopBar from "@/components/TopBar";   // Importe o componente TopBar
 
 export default {
-  name: 'App',
-
   components: {
-    HelloWorld,
+    SideBar, // Registre o componente SideBar
+    TopBar,  // Registre o componente TopBar
   },
-
-  data: () => ({
-    //
-  }),
-};
+}
 </script>
 
-<style>
-.custom-app {
-  height: 20px;
+<style scoped>
+.fixed-top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.mt-12 {
+  margin-top: 12px;
+}
+
+/* Define um z-index menor para o SideBar */
+.v-navigation-drawer {
+  z-index: 1000;
 }
 </style>
