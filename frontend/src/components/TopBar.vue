@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar
+    <div style="border: 5px solid red; width: 100%; height: 5%;">
+      <v-app-bar
       class="top-bar custom-top-bar"
       color="#393E3B"
       top
@@ -27,27 +28,47 @@
       <v-btn target="_blank" text>
         <v-icon>mdi-account-circle-outline</v-icon>
       </v-btn>
-    </v-app-bar>
+       </v-app-bar> 
+    </div>
+     
+    <div class="container">
+      <div class="c">
+      
+        <v-navigation-drawer
+          expand-on-hover
+          
+          clipped
+          class="fixed-left"
+        >
+          <v-list nav dense>
+            <v-list-item link @click="selectItem('dashboard')" :class="{ 'selected-item': selectedItem === 'dashboard' }">
+              <v-list-item-icon>
+                <div class="indicator" v-if="selectedItem === 'dashboard'"></div>
+                <v-icon>mdi-view-dashboard</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Dashboard</v-list-item-title>
+            </v-list-item>
+          </v-list>
 
-    <v-navigation-drawer
-      expand-on-hover
-      app
-      clipped
-      class="fixed-left"
-    >
-      <v-list nav dense>
-        <v-list-item link @click="selectItem('dashboard')" :class="{ 'selected-item': selectedItem === 'dashboard' }">
-          <v-list-item-icon>
-            <div class="indicator" v-if="selectedItem === 'dashboard'"></div>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Dashboard</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+          
+        </v-navigation-drawer>
+
+      </div>
+      <div class="b">
+        <oracle-dv project-path="/@Catalog/users/aldrik.alvaro@fatec.sp.gov.br/Novo Arquivo de Trabalho" active-page="canvas" active-tab-id="1">
+        </oracle-dv>
+      </div>
+    </div>
+   
+   
+
+
+
+
+
 
     <v-main class="main-container">
-      <router-view></router-view> 
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
@@ -80,11 +101,6 @@ export default {
   font-size: 14px;
 }
 
-.fixed-left {
-  width: 100px;
-  margin-top: 45px; 
-}
-
 .v-app-bar {
   position: absolute;
   top: 0;
@@ -109,5 +125,28 @@ export default {
 .main-container {
   background-color: #F1EFEE; /* Cor de fundo cinza */
   padding: 20px; /* Espaçamento interno para o conteúdo */
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 95vh; /* Definir a altura da container para ocupar 95% da altura da janela de visualização */
+}
+
+ .b {
+  /* border: 5px solid rgb(39, 149, 182); */
+  width: 5%;
+  flex-grow: 1;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 15px;
+}
+
+.c {
+  background-color: #FFCCCC !important; /* Cor de fundo personalizada para c */
+}
+
+.b {
+  /* background-color: #CCCCFF !important; Cor de fundo personalizada para b */
 }
 </style>
