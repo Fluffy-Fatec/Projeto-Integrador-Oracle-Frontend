@@ -1,7 +1,8 @@
 <template>
   <v-app>
-    <div style="border: 5px solid red; width: 100%; height: 5%;">
-      <v-app-bar
+
+    <div class="menuHorizontal">
+      <!-- <v-app-bar
       class="top-bar custom-top-bar"
       color="#393E3B"
       top
@@ -28,11 +29,12 @@
       <v-btn target="_blank" text>
         <v-icon>mdi-account-circle-outline</v-icon>
       </v-btn>
-       </v-app-bar> 
+       </v-app-bar>  -->
     </div>
      
     <div class="container">
-      <div class="c">
+      
+      <div class="menuVertical">
       
         <v-navigation-drawer
           expand-on-hover
@@ -48,28 +50,51 @@
               </v-list-item-icon>
               <v-list-item-title>Dashboard</v-list-item-title>
             </v-list-item>
-          </v-list>
 
-          
+            <v-list-item link @click="selectItem('ingestao')" :class="{ 'selected-item': selectedItem === 'ingestao' }">
+              <v-list-item-icon>
+                <div class="indicator" v-if="selectedItem === 'ingestao'"></div>
+                <v-icon>mdi-view-dashboard</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Ingestão</v-list-item-title>
+            </v-list-item>
+          </v-list>
         </v-navigation-drawer>
 
       </div>
-      <div class="b">
-        <oracle-dv project-path="/@Catalog/users/aldrik.alvaro@fatec.sp.gov.br/Novo Arquivo de Trabalho" active-page="canvas" active-tab-id="1">
-        </oracle-dv>
+
+      <div class="conteudo-dash" v-if="selectedItem !== 'ingestao'">
+          <!-- <oracle-dv project-path="/@Catalog/users/aldrik.alvaro@fatec.sp.gov.br/Novo Arquivo de Trabalho" active-page="canvas" active-tab-id="1">
+        </oracle-dv>  -->
       </div>
+
+      <div class="conteudo-ingestao" v-if="selectedItem === 'ingestao'">
+          <!-- Conteúdo da Ingestão (sobreposto) -->
+          <div class="conteudo-sobreposto" v-if="selectedItem === 'ingestao'">
+
+            <form @submit.prevent="submitCSV">
+              <div class="ingestao-upload">
+                
+
+                <input type="file" id="csvFile" accept=".csv" ref="fileInput">
+                <!-- <br> 
+                <div>Drag or select a file from your computer</div> -->
+                <!-- <label for="csvFile">Drag or select a file from your computer</label> -->
+                        
+              
+              </div>
+              <br>
+              <button class="ingestao-btn" type="submit">Upload</button>
+            </form>
+          </div>
+      </div>
+
+ 
+ 
     </div>
-   
-   
-
-
-
-
-
-
-    <v-main class="main-container">
+    <!-- <v-main class="main-container">
       <router-view></router-view>
-    </v-main>
+    </v-main> -->
   </v-app>
 </template>
 
@@ -84,8 +109,20 @@ export default {
   methods: {
     selectItem(item) {
       this.selectedItem = item;
-    }
-  }
+    },
+    submitCSV() {
+      const fileInput = this.$refs.fileInput;
+      const selectedFile = fileInput.files[0];
+
+      if (selectedFile) {
+        // Faça algo com o arquivo selecionado (por exemplo, envie-o para um servidor)
+        console.log('Arquivo CSV selecionado:', selectedFile.name);
+        alert('Arquivo CSV enviado com sucesso!');
+      } else {
+        alert('Por favor, selecione um arquivo CSV.');
+      }
+    },
+  },
 }
 </script>
 
@@ -96,6 +133,9 @@ export default {
 .negrito-font {
   font-size: 14px;
   font-weight: bold;
+}
+.clearfix {
+  clear: both; /* Limpa elementos flutuantes antes de iniciar uma nova linha */
 }
 .normal-font {
   font-size: 14px;
@@ -133,20 +173,72 @@ export default {
   height: 95vh; /* Definir a altura da container para ocupar 95% da altura da janela de visualização */
 }
 
- .b {
-  /* border: 5px solid rgb(39, 149, 182); */
+.conteudo-dash {
+  border: 5px solid rgb(39, 149, 182); 
+  background-color: #CCCCFF !important;/* Cor de fundo personalizada para b */
   width: 5%;
   flex-grow: 1;
   box-sizing: border-box;
   position: relative;
   padding-top: 15px;
+
 }
 
-.c {
+.conteudo-ingestao {
+  border: 5px solid rgb(24, 226, 115); 
+  background-color: #80ec97 !important;/* Cor de fundo personalizada para b */
+  width: 5%;
+  flex-grow: 1;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 15px;
+
+}
+
+
+
+
+.menuVertical {
   background-color: #FFCCCC !important; /* Cor de fundo personalizada para c */
 }
 
-.b {
-  /* background-color: #CCCCFF !important; Cor de fundo personalizada para b */
+
+
+.menuHorizontal{
+  border: 5px solid red; 
+  width: 100%; 
+  height: 5%;
 }
+
+.ingestao-btn{
+  /* border: 5px solid rgb(192, 44, 137); */
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 35px;
+  padding-right: 35px;
+  margin-left: 47%;
+  border-radius: 50px;
+  background-color: #E90505; 
+  color: white;
+}
+
+.ingestao-upload{
+  border: 5px solid rgb(255, 255, 255); 
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  height: 15vh; /* Isso define a altura da div pai para ocupar toda a altura da janela de visualização. Você pode ajustar conforme necessário. */
+  margin-left: 15%;
+  margin-right: 15%;
+  
+  /* padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 35px;
+  padding-right: 35px; */
+  /* margin-left: 50%; */
+  /* border-radius: 50px; */
+  /* background-color: #E90505; 
+  color: white; */
+}
+
 </style>
