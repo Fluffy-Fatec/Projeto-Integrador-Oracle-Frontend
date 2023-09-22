@@ -1,8 +1,7 @@
 <template>
   <v-app>
-
     <div class="menuHorizontal">
-      <!-- <v-app-bar
+      <v-app-bar
       class="top-bar custom-top-bar"
       color="#393E3B"
       top
@@ -29,7 +28,7 @@
       <v-btn target="_blank" text>
         <v-icon>mdi-account-circle-outline</v-icon>
       </v-btn>
-       </v-app-bar>  -->
+       </v-app-bar>
     </div>
      
     <div class="container">
@@ -89,8 +88,6 @@
           </div>
       </div>
 
- 
- 
     </div>
     <!-- <v-main class="main-container">
       <router-view></router-view>
@@ -99,6 +96,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: 'App',
   data() {
@@ -110,21 +109,40 @@ export default {
     selectItem(item) {
       this.selectedItem = item;
     },
-    submitCSV() {
+    async submitCSV() {
       const fileInput = this.$refs.fileInput;
       const selectedFile = fileInput.files[0];
 
-      if (selectedFile) {
-        // Faça algo com o arquivo selecionado (por exemplo, envie-o para um servidor)
-        console.log('Arquivo CSV selecionado:', selectedFile.name);
-        alert('Arquivo CSV enviado com sucesso!');
-      } else {
+      if (!selectedFile) {
         alert('Por favor, selecione um arquivo CSV.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      try { 
+        const response = await axios.post('/api/csv/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
+        console.log('Resposta do servidor:', response.data);
+        alert('Arquivo CSV enviado com sucesso!');
+      } catch (error) {
+        console.error('Erro ao enviar o arquivo CSV:', error);
+        alert('Ocorreu um erro ao enviar o arquivo CSV.');
       }
     },
   },
-}
+};
 </script>
+
+
+
+
+
 
 <style scoped>
 .custom-top-bar {
@@ -184,16 +202,7 @@ export default {
 
 }
 
-.conteudo-ingestao {
-  border: 5px solid rgb(24, 226, 115); 
-  background-color: #80ec97 !important;/* Cor de fundo personalizada para b */
-  width: 5%;
-  flex-grow: 1;
-  box-sizing: border-box;
-  position: relative;
-  padding-top: 15px;
 
-}
 
 
 
@@ -210,6 +219,9 @@ export default {
   height: 5%;
 }
 
+
+
+/* ############################################################ */
 .ingestao-btn{
   /* border: 5px solid rgb(192, 44, 137); */
   padding-top: 10px;
@@ -222,23 +234,28 @@ export default {
   color: white;
 }
 
+.conteudo-ingestao {
+  border: 5px solid rgb(24, 226, 115); 
+  background-color: #80ec97 !important;/* Cor de fundo personalizada para b */
+  width: 5%;
+  flex-grow: 1;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 15px;
+
+}
+
 .ingestao-upload{
   border: 5px solid rgb(255, 255, 255); 
+  background-color:  rgb(255, 255, 255); 
+  border-radius: 10px;
   display: flex;
   justify-content: center; /* Centraliza horizontalmente */
   align-items: center; /* Centraliza verticalmente */
-  height: 15vh; /* Isso define a altura da div pai para ocupar toda a altura da janela de visualização. Você pode ajustar conforme necessário. */
-  margin-left: 15%;
-  margin-right: 15%;
-  
-  /* padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 35px;
-  padding-right: 35px; */
-  /* margin-left: 50%; */
-  /* border-radius: 50px; */
-  /* background-color: #E90505; 
-  color: white; */
+  height: 20vh; /* Isso define a altura da div pai para ocupar toda a altura da janela de visualização. Você pode ajustar conforme necessário. */
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 15%;
 }
 
 </style>
