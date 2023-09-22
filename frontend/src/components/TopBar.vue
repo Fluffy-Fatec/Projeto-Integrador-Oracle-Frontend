@@ -76,12 +76,15 @@
               <!-- <input type="file" id="csvFile" accept=".csv" ref="fileInput" style="display: none;">
               <label for="csvFile" class="file-upload-button">Select CSV File</label> -->
               <input type="file" id="csvFile" accept=".csv" ref="fileInput" @change="updateSelectedFileName" style="display: none;" >
-              <label for="csvFile" class="file-upload-button">Select CSV File</label>
+              <label for="csvFile" class="file-upload-button"><i class="fa fa-file-text" aria-hidden="true" style="font-size: 54px; color: #222222;"></i></label>
+              
               <span class="selected-file-name">{{ selectedFileName }}</span>
+              
               <!-- <label for="csvFile">Drag or select a file from your computer</label> -->
             </div>
-<!-- <button class="ingestao-btn" type="submit">Upload</button> -->
-</form>
+            <br>
+            <button class="ingestao-btn" type="submit">Upload</button>
+          </form>
           </div>
       </div>
 
@@ -187,6 +190,7 @@ export default {
 }
 
 .container {
+  background-color: #f0efed !important;/* Cor de fundo personalizada para b */
   display: flex;
   flex-direction: row;
   height: 95vh; /* Definir a altura da container para ocupar 95% da altura da janela de visualização */
@@ -229,15 +233,17 @@ export default {
   padding-bottom: 10px;
   padding-left: 35px;
   padding-right: 35px;
-  margin-left: 47%;
+  margin-left: 46%;
   border-radius: 50px;
   background-color: #E90505; 
   color: white;
 }
 
 .conteudo-ingestao {
-  /* border: 5px solid rgb(24, 226, 115); 
-  background-color: #80ec97 !important;Cor de fundo personalizada para b */
+  border: 5px solid #ffffff !important;
+  background-color: #ffffff !important;
+  border-radius: 30px;
+  margin: 20px;
   width: 5%;
   flex-grow: 1;
   box-sizing: border-box;
@@ -247,7 +253,7 @@ export default {
 }
 
 .ingestao-upload {
-  border: 5px solid #f0efed;
+  border: 5px dotted rgb(57 62 59);
   background-color: #f0efed;
   border-radius: 10px;
   display: flex;
@@ -255,8 +261,8 @@ export default {
   justify-content: center; /* Centraliza verticalmente */
   align-items: center; /* Centraliza horizontalmente */
   height: 20vh;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 30%;
+  margin-right: 30%;
   margin-top: 15%;
 }
 
@@ -267,14 +273,14 @@ export default {
 .file-upload-button {
   cursor: pointer;
   padding: 10px 20px;
-  background-color: #007bff;
+  /* background-color: #007bff; */
   color: #fff;
   border: none;
   border-radius: 5px;
 }
 
 .file-upload-button:hover {
-  background-color: #0056b3;
+  background-color: #cdcdcd;
 }
 
 </style>
