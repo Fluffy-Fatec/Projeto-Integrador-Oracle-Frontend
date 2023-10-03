@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+  </header>
+  <main>
+    <section class="suppliers">
+      <h2>Fornecedores</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>CNPJ</th>
+            <th>Insumos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Empresa 1</td>
+            <td>123.456.789/0001-00</td>
+            <td>Salmão Rosa, Arroz Japonês</td>
+          </tr>
+          <tr>
+            <td>Empresa 2</td>
+            <td>987.654.321/0001-01</td>
+            <td>Arroz Branco, Feijão Preto</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section class="address">
+      <h2>Endereço</h2>
+      <input type="text" name="rua" placeholder="Rua">
+      <input type="text" name="numero" placeholder="Número">
+      <input type="text" name="bairro" placeholder="Bairro">
+      <input type="text" name="cidade" placeholder="Cidade">
+      <input type="text" name="estado" placeholder="Estado">
+    </section>
+    <section class="payment">
+      <h2>Pagamento</h2>
+      <select name="segmento">
+        <option value="alimenticio">Alimentício</option>
+        <option value="industrial">Industrial</option>
+      </select>
+      <input type="text" name="forma_pagamento" placeholder="Forma de pagamento">
+      <input type="text" name="dia_pagamento" placeholder="Dia de pagamento">
+      <input type="text" name="status" placeholder="Status">
+    </section>
+    <footer>
+      <button type="submit">Registrar</button>
+      <button type="reset">Limpar</button>
+    </footer>
+  </main>
+</body>
+</html>
