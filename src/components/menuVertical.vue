@@ -13,6 +13,13 @@
         value="upload"
         @click="handleItemClick('upload')"
       ></v-list-item>
+      <v-list-item
+      prepend-icon="mdi-account-multiple"
+      title="Suppliers"
+      value="suppliers"
+      @click="handleItemClick('suppliers')"
+    ></v-list-item>
+    
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -35,6 +42,10 @@ export default {
       }
       if (itemTitle == "upload") {
           router.push("/upload");
+      }
+
+      if (itemTitle == "suppliers") {
+          router.push("/suppliers");
       }
       
     },
