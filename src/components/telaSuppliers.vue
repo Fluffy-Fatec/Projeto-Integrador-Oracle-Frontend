@@ -3,14 +3,14 @@
       <div style="border: 0px solid rgb(38, 0, 255)" class="conteudoSuppliers">
         <div style="border: 0px solid rgb(0, 255, 42)">
         
-            
+          <!-- CABEÇALHO -->
           <div style="border-bottom: 2px solid #9f9f9f; height: 75px; padding: 10px;">
             <v-row style="border: 0px solid rgb(0, 157, 255) !important;  padding-top: 10px; display: flex;">
-              <v-col style="border: 0px solid rgb(0, 255, 153) !important;  padding-left: 25px;" cols="11">
+              <v-col style="border: 0px solid rgb(0, 255, 153) !important;  padding-left: 25px;" cols="10">
                 Suppliers
               </v-col>
-              <v-col style="border: 0px solid rgb(0, 255, 153) !important; display: flex; align-items: center;" cols="1">
-                <div style="border: 0px solid rgb(0, 255, 153) !important; margin: auto;">
+              <v-col style="border: 0px solid rgb(0, 255, 153) !important; display: flex; align-items: right; justify-content: flex-end;" cols="2">
+                <div style="border: 0px solid rgb(0, 255, 153) !important; ">
                   <!-- <button class="upload-btn"><i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size: 24px;color: #222222;"></i></button> -->
                   <v-dialog v-model="dialog" persistent width="1024">
                     <template v-slot:activator="{ props }">
@@ -122,170 +122,156 @@
               </v-col>
             </v-row>
           </div> 
+    
+          <!-- DIV COM FORM E TABELA ESTOQUE -->
+          <v-row style="border: 0px solid rgb(0, 255, 42); padding: 10px;">
 
-                <!-- <v-col style="border: 0px solid rgb(6, 235, 197);" cols="2">
-                  <div style="padding-left:115%; padding-top:1.5%;">
-                    <button class="upload-btn" type="submit"><i class="fa fa-file-text" aria-hidden="true" style="font-size: 24px; color: #222222;"></i></button>
-                  </div>          
-                </v-col> -->
-         
+            <!-- FORM ESTOQUE -->
+            <v-col style="border: 0px solid red !important;"  cols="12" lg="8">
+                    <v-container >
+                      <v-row>
+                        <v-col cols="12" lg="7">
+                          
+                          <v-text-field
+                            v-model="companyName"
+                            :rules="rules"
+                            label="Company"
+                            placeholder="Company"
+                            variant="outlined"
+                            ref="companyName"
+                          ></v-text-field>
 
-            
-              <v-row style="border: 0px solid rgb(0, 255, 42); padding: 10px;">
+                        </v-col>   
+                        <v-col cols="12" lg="5">
+                          
+                          <v-text-field
+                            v-model="cnpj"
+                            :rules="rules"
+                            label="CNPJ"
+                            placeholder="00.000.000/0000-00"
+                            variant="outlined"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
 
-                
-                <v-col style="border: 0px solid red !important;" cols="8">
-                  <v-container >
-                    <v-row>
-                      <v-col cols="7">
-                        
-                        <v-text-field
-                        v-model="companyName"
-                        :rules="rules"
-                        label="Company"
-                        placeholder="Company"
-                        variant="outlined"
-                        
-                      ></v-text-field>
-
-
-                      </v-col>   
-                      <v-col cols="5">
-                        
-                        <v-text-field
-                        v-model="cnpj"
-                        :rules="rules"
-                        label="CNPJ"
-                        placeholder="00.000.000/0000-00"
-                        variant="outlined"
-                      ></v-text-field>
-                      </v-col>
-                    </v-row>
-
-                    <v-row >   
-                      <v-col cols="4">
-                        
-                        <v-select
-                        v-model="segment"
-                        :items="items"
-                        :rules="[v => !!v || 'Segment is required']"
-                        label="Segment"
-                        required
-                        variant="outlined"
-                      ></v-select>
-                
-                      </v-col>
-                      <v-col cols="3">
-                        
-                        <v-select
-                        v-model="payment"
-                        :items="items"
-                        :rules="[v => !!v || 'Payment is required']"
-                        label="Payment"
-                        required
-                        variant="outlined"
-                      ></v-select>
-                
-                      </v-col>
-                      <v-col cols="2">
-              
-                        <v-text-field
-                        v-model="companyName"
+                      <v-row >   
+                        <v-col cols="6" lg="4">
+                          
+                          <v-select
+                          v-model="segment"
+                          :items="items"
+                          :rules="[v => !!v || 'Segment is required']"
+                          label="Segment"
+                          required
+                          variant="outlined"
+                        ></v-select>
                   
-                        label="Pay Day"
-                        placeholder="15"
-                        variant="outlined"
-                      ></v-text-field>
-                      </v-col>
-                      <v-col cols="3">
-                
-
-                      <!-- <v-select
-                      v-model="checkbox"
-                      :items="itemStatus"
-                      :rules="[v => !!v || 'Status is required']"
-                      label="Status"
-                      variant="outlined"
-                    ></v-select>
-                    -->
-
-                    <v-text-field
-                    v-model="forecast"
-                    :rules="rules"
-                    label="Forecast Delivery"
-                    variant="outlined"
-                  ></v-text-field>
-                
-                
-                      </v-col>
-                    </v-row>
-
-                    <v-row >
-                      <v-col cols="12">
+                        </v-col>
+                        <v-col cols="6" lg="3">
+                          
+                          <v-select
+                          v-model="payment"
+                          :items="items"
+                          :rules="[v => !!v || 'Payment is required']"
+                          label="Payment"
+                          required
+                          variant="outlined"
+                        ></v-select>
                   
-                        <v-text-field
-                        v-model="address"
-                        :rules="rules"
-                        label="Address"
-                        variant="outlined"
-                      ></v-text-field>
-                      </v-col>
-                    </v-row>
-
-                    <v-row>
-                      <v-col cols="3">
-                        
-                        <v-text-field
-                        v-model="city"
-                        :rules="rules"
-                        label="City"
-                        variant="outlined"
-                      ></v-text-field>
-                      </v-col>
-                      <v-col cols="3">
-                        
-                        <v-text-field
-                        v-model="state"
-                        :rules="rules"
-                        label="State"
-                        variant="outlined"
-                      ></v-text-field>
-                      </v-col>
-                      <v-col cols="3">
-                        
-                        <v-text-field
-                        v-model="number1"
-                        :rules="rules"
-                        label="Number 1"
-                        variant="outlined"
-                      ></v-text-field>
-                      </v-col>
-                      <v-col cols="3">
-      
-                        <v-select
-                        v-model="checkbox"
-                        :items="itemStatus"
-                        :rules="[v => !!v || 'Status is required']"
-                        label="Status"
-                        variant="outlined"
-                      ></v-select>
+                        </v-col>
+                        <v-col cols="6" lg="2">
+                
+                          <v-text-field
+                          v-model="payday"
                     
+                          label="Pay Day"
+                          placeholder="15"
+                          variant="outlined"
+                        ></v-text-field>
+                        </v-col>
+                        <v-col cols="6" lg="3">
+                  
+
+          
+                      <v-text-field
+                      v-model="forecast"
+                      :rules="rules"
+                      label="Forecast Delivery"
+                      variant="outlined"
+                    ></v-text-field>
+                  
+                  
+                        </v-col>
+                      </v-row>
+
+                      <v-row >
+                        <v-col cols="12" lg="12">
+                    
+                          <v-text-field
+                          v-model="address"
+                          :rules="rules"
+                          label="Address"
+                          variant="outlined"
+                        ></v-text-field>
+                        </v-col>
+                      </v-row>
+
+                      <v-row>
+                        <v-col cols="6" lg="3">
+                          
+                          <v-text-field
+                          v-model="city"
+                          :rules="rules"
+                          label="City"
+                          variant="outlined"
+                        ></v-text-field>
+                        </v-col>
+                        <v-col cols="6" lg="3">
+                          
+                          <v-text-field
+                          v-model="state"
+                          :rules="rules"
+                          label="State"
+                          variant="outlined"
+                        ></v-text-field>
+                        </v-col>
+                        <v-col cols="6" lg="3">
+                          
+                          <v-text-field
+                          v-model="number1"
+                          :rules="rules"
+                          label="Number 1"
+                          variant="outlined"
+                        ></v-text-field>
+                        </v-col>
+                        <v-col cols="6" lg="3">
+        
+                          <v-select
+                          v-model="status"
+                          :items="itemStatus"
+                          :rules="[v => !!v || 'Status is required']"
+                          label="Status"
+                          variant="outlined"
+                        ></v-select>
                       
-                        <!-- <v-text-field
-                        v-model="number2"
-                        :rules="rules"
-                        label="Number 2"
-                        placeholder="(99)99999-999"
-                        variant="outlined"
-                      ></v-text-field> -->
-                      </v-col>            
-                    </v-row>
-                  </v-container>
-                  <div style="border: 0px solid red; padding-left: 35px;"><button class="Register-btn" type="submit">Register</button> <button class="Delete-btn" type="submit">Delete</button></div>
+                        
+                          <!-- <v-text-field
+                          v-model="number2"
+                          :rules="rules"
+                          label="Number 2"
+                          placeholder="(99)99999-999"
+                          variant="outlined"
+                        ></v-text-field> -->
+                        </v-col>            
+                      </v-row>
+                    </v-container>
 
-                </v-col>  
+                    <div style="border: 0px solid red; padding-left: 35px;"><button class="Register-btn" @click="Registerbtn">Register</button> <button class="Delete-btn">Delete</button></div>
 
-                <v-col style="border: 0px solid rgb(255, 217, 0) !important;" cols="4">
+            </v-col>  
+            
+            <!-- TABELA ESTOQUE -->
+            <v-col style="border: 0px solid rgb(255, 217, 0) !important;" cols="12" lg="4">
                   <!-- Feedstock -->
                   <v-table
                     fixed-header
@@ -316,85 +302,9 @@
                       </tr>
                     </tbody>
                   </v-table>
-                </v-col>
+            </v-col>
 
-              </v-row>
-
-           
-
-            <!-- <v-container class="bg-surface-variant">
-                <v-form @submit.prevent>
-                  <v-row no-gutters>
-                    <v-col cols="7">
-                      <v-text-field
-                      v-model="companyName"
-                      :rules="rules"
-                      label="Company"
-                    ></v-text-field>
-                    </v-col>
-                    <v-col>
-                      <v-sheet class="pa-2 ma-2">
-                        .v-col-auto
-                      </v-sheet>
-                    </v-col>
-                  </v-row>
-              
-                  <v-row no-gutters>
-                    <v-col>
-                      <v-sheet class="pa-2 ma-2">
-                        .v-col-auto
-                      </v-sheet>
-                    </v-col>
-                    <v-col>
-                      <v-sheet class="pa-2 ma-2">
-                        .v-col-auto
-                      </v-sheet>
-                    </v-col>
-                    <v-col>
-                      <v-sheet class="pa-2 ma-2">
-                        .v-col-auto
-                      </v-sheet>
-                    </v-col>
-                  </v-row>
-              
-                  <v-row no-gutters>
-                    <v-col cols="2">
-                      <v-sheet class="pa-2 ma-2">
-                        .v-col-2
-                      </v-sheet>
-                    </v-col>
-                    <v-col>
-                      <v-sheet class="pa-2 ma-2">
-                        .v-col-auto
-                      </v-sheet>
-                    </v-col>
-                  </v-row>
-                </v-form>
-              </v-container>
-          -->
-            <!-- <v-sheet width="300" class="">
-              <v-form @submit.prevent>
-
-
-                <v-text-field
-                  v-model="firstName"
-                  :rules="rules"
-                  label="First name"
-                ></v-text-field>
-
-                <v-text-field
-                v-model="firstName"
-                :rules="rules"
-                label="First name"
-              ></v-text-field>
-
-
-
-              <v-btn type="submit" block class="mt-2">Submit</v-btn> 
-              </v-form>
-            </v-sheet> -->
-
-        
+          </v-row>
         </div>
       </div>
     </div>
@@ -406,6 +316,18 @@
       name: 'Suppliers',
       data() {
       return {
+        isMobile: window.innerWidth <= 700,
+        companyName: '',
+        cnpj: '',
+        segment:'',
+        payment:'',
+        payday:'',
+        forecast:'',
+        address:'',
+        city:'',
+        state:'',
+        number1:'',
+        status:'',
         dialog: false,
         desserts: [
           {
@@ -477,11 +399,65 @@
           'Active',
           'Disabled',
         ],
-      
-
         };
       },
       methods: {
+        async Registerbtn() {
+          // Resgata os valores dos campos
+          const companyNameValue = this.companyName;
+          const cnpjValue = this.cnpj;
+          const segmentValue = this.segment;
+          const paymentValue = this.payment;
+          const paydayValue = this.payday;
+          const forecastValue = this.forecast;
+          const addressValue = this.address;
+          const cityValue = this.city;
+          const stateValue = this.state;
+          const number1Value = this.number1;
+          const statusValue = this.status;
+
+          // Crie um objeto JSON com os valores
+          const postData = {
+            name: companyNameValue,
+            segment: segmentValue,
+            deliveryForecast: forecastValue,
+            cnpj: cnpjValue,
+            phone: number1Value,
+            address: addressValue,
+            city: cityValue,
+            state: stateValue,
+            status: statusValue,
+            paymentMethodName: paymentValue,
+            paymentMethodPayDay: paydayValue
+          };
+
+
+          try {
+            // Faça a solicitação POST usando o Axios
+            const response = await axios.post("/api/suppliers", postData);
+
+            // Exiba a resposta no console (pode ser útil para depuração)
+            console.log("Resposta da solicitação POST:", response);
+
+            // Limpe os campos após o envio bem-sucedido (opcional)
+            this.companyName =  '';
+            this.cnpj =  '';
+            this.segment = '';
+            this.payment = '';
+            this.payday = '';
+            this.forecast = '';
+            this.address = '';
+            this.city = '';
+            this.state = '';
+            this.number1 = '';
+            this.status = '';
+          } catch (error) {
+            // Em caso de erro, exiba-o no console
+            console.error("Erro na solicitação POST:", error);
+          }
+
+        },
+
     },
   }
   </script>

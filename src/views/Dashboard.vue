@@ -3,7 +3,9 @@
   <menuVertical />
   <div class="fundoDashboard">
       <div class="conteudoDashboard">
-        <oracle-dv project-path="/@Catalog/users/aldrik.alvaro@fatec.sp.gov.br/Oracle-Dinner" active-page="insight" active-tab-id="snapshot!canvas!1">
+        <!-- <oracle-dv project-path="/@Catalog/users/aldrik.alvaro@fatec.sp.gov.br/Oracle-Dinner" active-page="insight" active-tab-id="snapshot!canvas!1">
+        </oracle-dv> -->
+        <oracle-dv project-path="/@Catalog/users/ana.leal01@fatec.sp.gov.br/Oracle-Dinner" active-page="canvas" active-tab-id="1">
         </oracle-dv>
       </div>
   </div>
