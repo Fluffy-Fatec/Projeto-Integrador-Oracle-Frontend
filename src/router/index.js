@@ -17,9 +17,19 @@ const routes = [
         component: () => import('@/views/Dashboard.vue'),
       },
       {
+        path: '/dashboardSuppliers', 
+        name: 'dashboardSuppliers',
+        component: () => import('@/views/DashboardSuppliers.vue'),
+      },
+      {
         path: '/upload', 
         name: 'upload',
         component: () => import('@/views/Upload.vue'),
+      },
+      {
+        path: '/suppliers', 
+        name: 'suppliers',
+        component: () => import('@/views/Suppliers.vue'),
       },
     ],
   },
