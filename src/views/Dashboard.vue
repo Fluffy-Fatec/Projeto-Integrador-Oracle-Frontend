@@ -7,7 +7,7 @@
         </oracle-dv> -->
         <!-- <oracle-dv project-path="/@Catalog/users/ana.leal01@fatec.sp.gov.br/Oracle-Dinner" active-page="canvas" active-tab-id="1">
         </oracle-dv> -->
-        <oracle-dv project-path="/@Catalog/users/ana.leal01@fatec.sp.gov.br/Oracle-Dinner-original" active-page="insight">
+<oracle-dv project-path="/@Catalog/users/ana.leal01@fatec.sp.gov.br/Oracle-Dinner-original" active-page="insight" active-tab-id="1">
 </oracle-dv>
       </div>
   </div>

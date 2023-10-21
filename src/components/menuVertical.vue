@@ -4,13 +4,13 @@
       <v-list-item
         prepend-icon="mdi-chart-areaspline"
         title="Dashboard Sales"
-        value="dashboard"
+        value="dashboardSales"
         @click="handleItemClick('dashboardSales')"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-chart-bar"
         title="Dashboard Suppliers"
-        value="dashboard"
+        value="dashboardSuppliers"
         @click="handleItemClick('dashboardSuppliers')"
       ></v-list-item>
       <v-list-item
@@ -42,7 +42,7 @@ export default {
   methods: {
     handleItemClick(itemTitle) {
       //alert(`Você selecionou o item: ${itemTitle}`);
-      if (itemTitle == "dashboard") {
+      if (itemTitle == "dashboardSales") {
           //router.push("/dashboard");
           window.location.href = "http://localhost:3000/dashboard";
       }

@@ -13,7 +13,7 @@
                 <div style="border: 0px solid rgb(0, 255, 153) !important; ">
                   <!-- <button class="upload-btn"><i class="fa fa-file-pdf-o" aria-hidden="true" style="font-size: 24px;color: #222222;"></i></button> -->
                   
-                  <v-dialog v-model="dialog" persistent width="400">
+                  <!-- <v-dialog v-model="dialog" persistent width="400">
                     <template v-slot:activator="{ props }">
                       <v-btn
                         
@@ -56,7 +56,7 @@
                         </v-btn>
                       </v-card-actions>
                     </v-card>
-                  </v-dialog>
+                  </v-dialog> -->
 
                 </div>
               </v-col>
