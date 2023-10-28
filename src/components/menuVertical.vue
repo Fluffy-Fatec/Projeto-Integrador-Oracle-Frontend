@@ -24,7 +24,13 @@
       title="Suppliers"
       value="suppliers"
       @click="handleItemClick('suppliers')"
-    ></v-list-item>
+      ></v-list-item>
+      <v-list-item
+      prepend-icon="mdi-account-multiple"
+      title="Suppliers"
+      value="suppliers"
+      @click="handleItemClick('product')"
+      ></v-list-item>
     
     </v-list>
   </v-navigation-drawer>
@@ -56,6 +62,10 @@ export default {
 
       if (itemTitle == "suppliers") {
           router.push("/suppliers");
+      }
+
+      if (itemTitle == "product") {
+          router.push("/product");
       }
       
     },
