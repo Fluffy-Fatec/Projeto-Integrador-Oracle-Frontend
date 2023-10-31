@@ -26,9 +26,9 @@
       @click="handleItemClick('suppliers')"
       ></v-list-item>
       <v-list-item
-      prepend-icon="mdi-account-multiple"
-      title="Suppliers"
-      value="suppliers"
+      prepend-icon="mdi-food-fork-drink"
+      title="Products"
+      value="products"
       @click="handleItemClick('product')"
       ></v-list-item>
     

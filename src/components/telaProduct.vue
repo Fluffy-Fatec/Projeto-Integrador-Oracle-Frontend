@@ -251,8 +251,19 @@
                       </v-col>
                     </v-row>            
                   </v-container>
-                  <div style="border: 0px solid red; padding-left: 35px;"><button class="Register-btn" @click="Registerbtn">Register</button></div>
-          </v-col>  
+                    <v-row>
+                      <v-col cols="12" lg="2" style="padding-left: 35px;">
+                        <button class="Register-btn" @click="Registerbtn">Register</button>
+                      </v-col>
+                      <v-col cols="12" lg="4">
+                        <button class="Delete-btn" @click="Registerbtn">Delete</button>
+                      </v-col>
+                      <v-col cols="12" lg="6" style="padding-left: 380px;">
+                        <button class="Delete-btn" @click="Registerbtn">Link Supplier</button>
+                      </v-col>
+                    </v-row> 
+          </v-col>
+          
         </v-row>
       </div>
     </div>
@@ -385,7 +396,12 @@ export default {
       'Temperos',
       ],
 
-
+      itemMeasurement: [
+        'Kg',
+        'Un',
+        'Cx',
+        'l',
+      ],
 
       itemStatus: [
         'Active',
@@ -395,7 +411,7 @@ export default {
     },
     created() {
         // Realizar a chamada HTTP GET para obter os dados dos fornecedores
-        this.fetchSuppliers();
+        this.fetchItems();
         this.table();
 
 
@@ -425,7 +441,7 @@ export default {
             console.error("Erro ao obter os dados dos fornecedores: ", error);
           });
       },
-      fetchSuppliers() {
+      fetchItems() {
         axios.get('api/product')
           .then(response => {
             // Extract the "name" properties from the response and store them in this.suppliers
@@ -554,7 +570,7 @@ export default {
           this.number1 = '';
           this.status = '';
           this.selectedSupplier = '';
-          this.fetchSuppliers();
+          this.fetchItems();
           alert("Item successfully registered");
         } catch (error) {
           // Em caso de erro, exiba-o no console
@@ -676,7 +692,7 @@ export default {
           this.statusModal = '';
           this.selectedSupplier = '';
           this.disableField();
-          this.fetchSuppliers();
+          this.fetchItems();
           alert('Item successfully modified');
 
         } catch (error) {
@@ -696,7 +712,7 @@ export default {
           this.statusModal = '';
           this.selectedSupplier = '';
           this.disableField();
-          this.fetchSuppliers();
+          this.fetchItems();
           alert('An error occurred while modifying the item');
         }
 
@@ -721,7 +737,7 @@ export default {
           this.statusModal = '';
           this.selectedSupplier = '';
           this.disableField();
-          this.fetchSuppliers();
+          this.fetchItems();
           alert('Item successfully deleted');
         } catch (error) {
           // Lidar com erros, se houver algum problema na exclusão
@@ -740,7 +756,7 @@ export default {
           this.statusModal = '';
           this.selectedSupplier = '';
           this.disableField();
-          this.fetchSuppliers();
+          this.fetchItems();
           alert('An error occurred while deleting the item');
         }
       },
@@ -806,6 +822,19 @@ color: white;
 
 .Register-btn{
 /* border: 5px solid rgb(192, 44, 137); */
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 35px;
+padding-right: 35px;
+
+/* margin-left: 46%; */
+border-radius: 50px;
+background-color: #E90505; 
+color: white;
+}
+
+.Delete-btn{
+ background-color: 5px solid rgb(51, 51, 51); 
 padding-top: 10px;
 padding-bottom: 10px;
 padding-left: 35px;
