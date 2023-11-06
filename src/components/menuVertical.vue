@@ -14,6 +14,12 @@
         @click="handleItemClick('dashboardSuppliers')"
       ></v-list-item>
       <v-list-item
+        prepend-icon="mdi-chart-bar-stacked"
+        title="Dashboard Stock"
+        value="dashboardStock"
+        @click="handleItemClick('dashboardStock')"
+      ></v-list-item>
+      <v-list-item
         prepend-icon="mdi-download"
         title="Upload"
         value="upload"
@@ -56,6 +62,11 @@ export default {
           //router.push("/dashboard");
           window.location.href = "http://localhost:3000/dashboardSuppliers";
       }
+      if (itemTitle == "dashboardStock") {
+          //router.push("/dashboard");
+          window.location.href = "http://localhost:3000/dashboardStock";
+      }
+      
       if (itemTitle == "upload") {
           router.push("/upload");
       }

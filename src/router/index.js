@@ -22,6 +22,11 @@ const routes = [
         component: () => import('@/views/DashboardSuppliers.vue'),
       },
       {
+        path: '/dashboardStock', 
+        name: 'dashboardStock',
+        component: () => import('@/views/DashboardStock.vue'),
+      },
+      {
         path: '/upload', 
         name: 'upload',
         component: () => import('@/views/Upload.vue'),
