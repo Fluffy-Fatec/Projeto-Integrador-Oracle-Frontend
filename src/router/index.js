@@ -22,6 +22,11 @@ const routes = [
         component: () => import('@/views/DashboardSuppliers.vue'),
       },
       {
+        path: '/dashboardStock', 
+        name: 'dashboardStock',
+        component: () => import('@/views/DashboardStock.vue'),
+      },
+      {
         path: '/upload', 
         name: 'upload',
         component: () => import('@/views/Upload.vue'),
@@ -31,6 +36,12 @@ const routes = [
         name: 'suppliers',
         component: () => import('@/views/Suppliers.vue'),
       },
+      {
+        path: '/product', 
+        name: 'product',
+        component: () => import('@/views/Product.vue'),
+      },
+      
     ],
   },
 ]

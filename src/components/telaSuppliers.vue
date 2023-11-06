@@ -593,7 +593,7 @@
         console.log("Todos os campos estão preenchidos.");
         
       }
-    },
+        },
         table(){
           axios
             .get("api/feedstocks")
