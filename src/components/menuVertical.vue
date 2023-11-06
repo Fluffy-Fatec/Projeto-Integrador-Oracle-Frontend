@@ -4,14 +4,20 @@
       <v-list-item
         prepend-icon="mdi-chart-areaspline"
         title="Dashboard Sales"
-        value="dashboard"
+        value="dashboardSales"
         @click="handleItemClick('dashboardSales')"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-chart-bar"
         title="Dashboard Suppliers"
-        value="dashboard"
+        value="dashboardSuppliers"
         @click="handleItemClick('dashboardSuppliers')"
+      ></v-list-item>
+      <v-list-item
+        prepend-icon="mdi-chart-bar-stacked"
+        title="Dashboard Stock"
+        value="dashboardStock"
+        @click="handleItemClick('dashboardStock')"
       ></v-list-item>
       <v-list-item
         prepend-icon="mdi-download"
@@ -24,7 +30,13 @@
       title="Suppliers"
       value="suppliers"
       @click="handleItemClick('suppliers')"
-    ></v-list-item>
+      ></v-list-item>
+      <v-list-item
+      prepend-icon="mdi-food-fork-drink"
+      title="Products"
+      value="products"
+      @click="handleItemClick('product')"
+      ></v-list-item>
     
     </v-list>
   </v-navigation-drawer>
@@ -42,7 +54,7 @@ export default {
   methods: {
     handleItemClick(itemTitle) {
       //alert(`Você selecionou o item: ${itemTitle}`);
-      if (itemTitle == "dashboard") {
+      if (itemTitle == "dashboardSales") {
           //router.push("/dashboard");
           window.location.href = "http://localhost:3000/dashboard";
       }
@@ -50,12 +62,21 @@ export default {
           //router.push("/dashboard");
           window.location.href = "http://localhost:3000/dashboardSuppliers";
       }
+      if (itemTitle == "dashboardStock") {
+          //router.push("/dashboard");
+          window.location.href = "http://localhost:3000/dashboardStock";
+      }
+      
       if (itemTitle == "upload") {
           router.push("/upload");
       }
 
       if (itemTitle == "suppliers") {
           router.push("/suppliers");
+      }
+
+      if (itemTitle == "product") {
+          router.push("/product");
       }
       
     },
