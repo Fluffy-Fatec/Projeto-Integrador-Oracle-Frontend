@@ -48,11 +48,11 @@
               <v-list-item-group v-if="notificationsss.length > 0">
                 <v-list-item
                   v-for="notification in notificationsss"
-                  :key="notification.id_notification"
+                  :key="notification.nsId"
                   @click="listarNotifications"
                 >
                   <v-list-item-content>
-                    <v-list-item-title>{{ notification.name }}</v-list-item-title>
+                    <v-list-item-title>{{ notification.stocks.name }}</v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
