@@ -1,11 +1,4 @@
 <template>
-  <!-- <v-app-bar flat>
-    <v-app-bar-title>
-      <v-icon icon="mdi-circle-slice-6" />
-
-      Essentials Preset
-    </v-app-bar-title>
-  </v-app-bar> -->
   
   <div class="menuHorizontal">
     <v-app-bar color="#393E3B" top dense fixed dark >
@@ -23,9 +16,8 @@
           </div>
           <v-spacer></v-spacer>
           
-          <v-btn  @click="openModalNotification">
-            <i class="fa fa-bell" aria-hidden="true" style="color: #ffffff; font-size: 20px; "></i>          
-          </v-btn>
+          <v-btn  @click="openModalNotification" :color="buttonColor">
+            <i :class="{'fa fa-bell red-icon': notificationsss.some(notification => notification.nsStatus === 'ABERTO'), 'fa fa-bell': !notificationsss.some(notification => notification.nsStatus === 'ABERTO')}" aria-hidden="true" style="font-size: 20px;"></i>          </v-btn>
       
           <v-btn target="_blank" text>
             <i class="fa fa-user-circle-o" aria-hidden="true" style="color: #ffffff; font-size: 20px; "></i>
@@ -34,11 +26,16 @@
     </v-app-bar>
   </div>
 
-  <v-dialog v-model="modalNotify" persistent width="512">
+  <v-dialog v-model="modalNotify" persistent width="1200">
     <v-card>
 
       <v-card-title>
-        <span class="text-h5">Notifications</span>
+        <div>
+          <span class="text-h5">Notifications</span>
+        </div>
+        <div>
+          <span v-if="notificationsss.length > 0" class="text-h10">These inputs have low quantities in stock:</span>
+        </div>
       </v-card-title>
 
       <v-card-text >
@@ -50,9 +47,20 @@
                   v-for="notification in notificationsss"
                   :key="notification.nsId"
                   @click="listarNotifications"
+                  class="border-items"
                 >
                   <v-list-item-content>
-                    <v-list-item-title>{{ notification.stocks.name }}</v-list-item-title>
+                    <v-list-item-title>
+                      
+                      O item {{ notification.stocks.name }} está com um alerta de baixo estoque desde de a data {{ formatDate(notification.nsDatetime) }},
+                       sua quantidade atual é de {{ notification.stocks.amountAvailable }} {{ notification.stocks.measurement }}
+                       <span v-if="notification.nsStatus === 'FECHADO'">
+                          <i class="fa fa-eye" aria-hidden="true" style="color: #000000; font-size: 20px; "></i>
+                       </span>
+                       <span v-if="notification.nsStatus === 'ABERTO'">
+                          <i class="fa fa-eye-slash" aria-hidden="true" style="color: #000000; font-size: 20px; "></i>
+                       </span>
+                    </v-list-item-title>
                   </v-list-item-content>
                 </v-list-item>
               </v-list-item-group>
@@ -67,7 +75,7 @@
       <!-- FOOTER -->
       <v-card-actions class="text-center">
         <v-spacer></v-spacer>
-        <button class="Delete-btn" @click="modalNotify = false">Close</button>
+        <button class="Delete-btn" @click="closeModalNotification">Close</button>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -80,13 +88,11 @@
     name: 'Product',
     data() {
     return {
+      idNotifications: [],
+      idsNotifications: [],
       elected: '',
       data: [],
-      notificationsss: [
-        { id_notification: 1, name: 'Notificação A' },
-        { id_notification: 2, name: 'Notificação B' },
-        { id_notification: 3, name: 'Notificação C' },
-      ],
+      notificationsss: [],
       modalNotify: false,
       isFieldDisabled: true, // Defina o campo como desabilitado inicialmente
       modalOpen: false,
@@ -99,23 +105,56 @@
     created() {
         this.listarNotifications();
     },
-
+    computed: {
+      buttonColor() {
+        return this.notificationsss.some(notification => notification.nsStatus === 'ABERTO') ? 'red' : '';
+      },
+    },
     methods: {
+      formatDate(dateString) {
+      const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+      return new Date(dateString).toLocaleDateString('pt-BR', options);
+      },
       listarNotifications(){
-        axios.get('api/notificacao')
+        axios.get('/notification')
           .then(response => {
             // Extract the "name" properties from the response and store them in this.suppliers
-            this.notificationsss = response.data.map(notification => notification.name);
-            console.log(this.notificationsss)
+            this.notificationsss = response.data;
+
+            this.idNotifications = this.notificationsss.map(notification => notification.nsId);
+
           })
           .catch(error => {
             console.error('Error fetching data:', error);
           });
       },
+      atualizarNotification(idsNotifications){
+        for (const idNotification of idsNotifications) {
+          console.log(idNotification)
+          try{        
+            console.log('antes de atualizar');
+            const response = axios.put(`/notification/${idNotification}/updateStatus`, { nsStatus: 'FECHADO' });
+            console.log('Item atualizado com sucesso', response);
+          }
+          catch(error){
+            console.log('Erro ao excluir o item', error);
+          };  
+        }
+      },
       openModalNotification(){
         this.modalNotify = true;
       },
+      closeModalNotification(){
+        this.modalNotify = false;
+
+        const idsNotify = this.idNotifications;
+        console.log(idsNotify)
+
+        this.atualizarNotification(idsNotify);
+        this.listarNotifications();
+      },
     },
+
   }
 </script>
 
@@ -151,4 +190,13 @@ color: white;
   font-size: 14px;
   font-weight: bold;
 }
+
+.border-items {
+    border: 2px solid #ffffff; /* Light gray border color */
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1); /* Black shadow */
+  }
+  .red-icon {
+    color: red;
+  }
 </style>
