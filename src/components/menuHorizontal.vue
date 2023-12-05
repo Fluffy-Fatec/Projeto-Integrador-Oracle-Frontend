@@ -10,6 +10,7 @@
               transition="scale-transition"
               width="35"
             />
+           
             <span class="negrito-font mr-2">OracleDine</span>
             <span class="normal-font mr-2">|</span>
             <span class="normal-font mr-2">RestaurantName</span>
@@ -26,59 +27,94 @@
     </v-app-bar>
   </div>
 
-  <v-dialog v-model="modalNotify" persistent width="1200">
-    <v-card>
 
-      <v-card-title>
-        <div>
+  <v-dialog
+     v-model="modalNotify"
+      persistent
+      width="1024"
+    >
+
+      <v-card>
+        <v-card-title>
           <span class="text-h5">Notifications</span>
-        </div>
-        <div>
-          <span v-if="notificationsss.length > 0" class="text-h10">These inputs have low quantities in stock:</span>
-        </div>
-      </v-card-title>
+        </v-card-title>
 
-      <v-card-text >
-        <v-container>
-          <v-row>
-            <v-list>
-              <v-list-item-group v-if="notificationsss.length > 0">
-                <v-list-item
-                  v-for="notification in notificationsss"
-                  :key="notification.nsId"
-                  @click="listarNotifications"
-                  class="border-items"
+        <v-card-text>
+          <v-container>
+         
+
+            <v-row v-if="notificationsss.length > 0">
+              <v-container fluid>
+                <v-table
+                  fixed-header
+                  height="750px"
+                  style="border: 1px solid #a5a5a5; border-radius: 10px; padding: 0px;"
                 >
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      
-                      O item {{ notification.stocks.name }} está com um alerta de baixo estoque desde de a data {{ formatDate(notification.nsDatetime) }},
-                       sua quantidade atual é de {{ notification.stocks.amountAvailable }} {{ notification.stocks.measurement }}
-                       <span v-if="notification.nsStatus === 'FECHADO'">
-                          <i class="fa fa-eye" aria-hidden="true" style="color: #000000; font-size: 20px; "></i>
-                       </span>
-                       <span v-if="notification.nsStatus === 'ABERTO'">
-                          <i class="fa fa-eye-slash" aria-hidden="true" style="color: #000000; font-size: 20px; "></i>
-                       </span>
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-              <v-list-item v-else>
-                <v-list-item-content>Nenhuma notificação disponível</v-list-item-content>
-              </v-list-item>
-            </v-list>
-          </v-row>
-        </v-container>
-      </v-card-text>
+                    <thead>
+                      <tr>
+                        <th >
+                          Item                           
+                        </th>
+                        <th >
+                          Low Stock Since       
+                        </th>
+                        <th >
+                          Quantity
+                        </th>
+                        <th >
+                          Visualization
+                        </th>
+                      </tr> 
+                    </thead>
+                    <tbody>
+                      <tr
+                      v-for="notification in notificationsss"
+                        :key="notification.nsId"
+                      >
+                        <td>{{ notification.stocks.name }}</td>
+                        <td>{{ formatDate(notification.nsDatetime) }}</td>
+                        <td>{{ notification.stocks.amountAvailable }} {{ notification.stocks.measurement }}</td>
+                        <td style="text-align: center;">
+                          <span v-if="notification.nsStatus === 'FECHADO'">
+                            <i class="fa fa-eye" aria-hidden="true" style="color: #000000; font-size: 20px;"></i>
+                          </span>
+                          <span v-if="notification.nsStatus === 'ABERTO'">
+                            <i class="fa fa-eye-slash" aria-hidden="true" style="color: #000000; font-size: 20px;"></i>
+                          </span>
+                        </td>
 
-      <!-- FOOTER -->
-      <v-card-actions class="text-center">
-        <v-spacer></v-spacer>
-        <button class="Delete-btn" @click="closeModalNotification">Close</button>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+              
+                      </tr>
+                    </tbody>
+                  </v-table>
+                </v-container>
+            </v-row>
+            <v-row v-else>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-content>No notifications available</v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-row>
+
+
+
+          </v-container>
+        </v-card-text>
+
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <button class="Delete-btn" @click="closeModalNotification">Close</button>
+          <v-spacer></v-spacer>
+        </v-card-actions>
+
+
+      </v-card>
+    </v-dialog>
+
+
+
 </template>
 
 <script>
@@ -88,6 +124,7 @@
     name: 'Product',
     data() {
     return {
+    
       idNotifications: [],
       idsNotifications: [],
       elected: '',
@@ -111,6 +148,13 @@
       },
     },
     methods: {
+      openModal() {
+      this.modalNotify = true;
+    },
+    closeModalNotification() {
+      this.modalNotify = false;
+    },
+    
       formatDate(dateString) {
       const options = { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
       return new Date(dateString).toLocaleDateString('pt-BR', options);
@@ -154,6 +198,14 @@
         this.listarNotifications();
       },
     },
+    mounted() {
+    this.$nextTick(() => {
+      if (this.modalNotify) {
+        // Focar na tabela quando a modal é aberta
+        this.$refs.notificationTable.$el.focus();
+      }
+    });
+  },
 
   }
 </script>

@@ -77,7 +77,7 @@
                                 <th style="color: white; text-align: center">CNPJ</th>
                                 <th style="color: white; text-align: center">Phone Number</th>
                                 <th style="color: white; text-align: center">Payment Method</th>
-                                <th style="color: white; text-align: center">Delivery Forecastr</th>
+                                <th style="color: white; text-align: center">Delivery Forecast</th>
                                 <th style="color: white; text-align: center">Values</th>
                                 <th style="color: white; text-align: center">QNT</th>
                                 <th style="color: white; text-align: center">UM</th>
@@ -108,17 +108,12 @@
                           </v-table>
                           </v-container>
                   <!-- botões -->
-                    <v-row>
-                      <v-col cols="12" lg="2" style="padding-left: 160px;">
-                        <button class="Register-btn" @click="openModalRegister">Register</button>
-                      </v-col>
-                      <v-col cols="12" lg="3" style="padding-left: 6px;">
-                        <button class="Delete-btn" @click="openModalLinkSupplier">Link Supplier</button>
-                      </v-col>
-                    </v-row> 
           </v-col>
           
         </v-row>
+          <div class="button-container">
+            <button class="Register-btn" @click="openModalRegister">Register</button> <button class="Delete-btn" @click="openModalLinkSupplier">Link Supplier</button>
+          </div>
       </div>
     </div>
   </div>
@@ -156,8 +151,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <button class="Register-btn" @click="linkSupplier">Register</button>
-          <button class="Delete-btn" @click="modalLink = false">Close</button>
+          <button class="Register-btn" @click="linkSupplier">Register</button> <button class="Delete-btn" @click="modalLink = false">Close</button>
           <v-text-field style="display: none;"
                           v-model="idSupplierSelected"       
                           variant="outlined"
@@ -232,8 +226,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
 
-          <button class="Register-btn" @click="registerItem">Register</button>
-          <button class="Delete-btn" @click="modalRegister = false">Close</button>
+          <button class="Register-btn" @click="registerItem">Register</button> <button class="Delete-btn" @click="modalRegister = false">Close</button>
           <v-text-field style="display: none;"
                           v-model="idSupplierSelected"       
                           variant="outlined"
@@ -626,4 +619,20 @@ height: 30vh; /* Definir a altura da container para ocupar 95% da altura da jane
 .ingestao-btn{
   color: #E90505; 
 }
+
+.button-container {
+  border: 0px solid red;
+  padding-left: 30px;
+  text-align: center; /* Isso centralizará os botões */
+}
+
+/* Media query para telas menores, como as de dispositivos móveis */
+@media (max-width: 768px) {
+  .button-container {
+    padding-left: 0; /* Ajuste do espaçamento lateral */
+  }
+
+  /* Opcional: Faça outros ajustes de estilo conforme necessário para dispositivos móveis */
+}
+
 </style>

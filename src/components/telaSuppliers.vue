@@ -397,7 +397,7 @@
                       
                     </v-container>
 
-                    <div style="border: 0px solid red; padding-left: 35px;"><button class="Register-btn" @click="Registerbtn">Register</button></div>
+                    <div style="border: 0px solid red; padding-left: 30px;"><button class="Register-btn" @click="Registerbtn">Register</button></div>
 
             </v-col>  
             
