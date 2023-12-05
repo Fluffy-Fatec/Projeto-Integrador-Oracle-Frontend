@@ -1,5 +1,13 @@
 <template>
-  <v-navigation-drawer expand-on-hover rail>
+  <div style="border: 0px solid rgb(255, 0, 200); background-color: #f0efed !important;" class="fundoSuppliers">
+    <v-app-bar-nav-icon
+      v-if="isMobile"
+      variant="text"
+      @click.stop="drawer = !drawer"
+      class="icon-mobile"
+    ></v-app-bar-nav-icon>
+   
+  <v-navigation-drawer  v-model="drawer" expand-on-hover rail>
     <v-list density="compact" nav>
       <v-list-item
         prepend-icon="mdi-chart-areaspline"
@@ -40,6 +48,7 @@
     
     </v-list>
   </v-navigation-drawer>
+</div>
 </template>
 
 <script>
@@ -49,22 +58,46 @@ export default {
   data() {
     return {
       selectedItem: null,
+      drawer: false,
+      isMobile: false,
     };
   },
+  mounted() {
+    this.checkIfMobile();
+    window.addEventListener('resize', this.checkIfMobile);
+    this.checkIfDesktop();
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkIfMobile);
+  },
   methods: {
+    checkIfMobile() {
+      this.isMobile = window.innerWidth <= 768; // Define o tamanho que você considera como mobile
+    },
+    
+    checkIfDesktop() {
+      if (!this.isMobile) {
+        this.drawer = true; // Se não for mobile, o drawer será sempre exibido
+      }
+    },
+
     handleItemClick(itemTitle) {
       //alert(`Você selecionou o item: ${itemTitle}`);
       if (itemTitle == "dashboardSales") {
           //router.push("/dashboard");
-          window.location.href = "http://localhost:3000/dashboard";
+          //window.location.href = "http://localhost:3000/dashboard";
+          window.location.href = "https://oracledinner.vercel.app/dashboard";
+          
       }
       if (itemTitle == "dashboardSuppliers") {
           //router.push("/dashboard");
-          window.location.href = "http://localhost:3000/dashboardSuppliers";
+          //window.location.href = "http://localhost:3000/dashboardSuppliers";
+          window.location.href = "https://oracledinner.vercel.app/dashboardSuppliers";
       }
       if (itemTitle == "dashboardStock") {
           //router.push("/dashboard");
-          window.location.href = "http://localhost:3000/dashboardStock";
+          //window.location.href = "http://localhost:3000/dashboardStock";
+          window.location.href = "https://oracledinner.vercel.app/dashboardStock";
       }
       
       if (itemTitle == "upload") {
@@ -79,6 +112,11 @@ export default {
           router.push("/product");
       }
       
+    },
+    watch: {
+      group () {
+        this.drawer = false
+      },
     },
   },
 };
@@ -100,5 +138,9 @@ export default {
 .selected-item {
   background-color: #F1EFEE;
   position: relative;
+}
+
+.icon-mobile {
+  font-size: 15px; /* Altere o tamanho conforme necessário */
 }
 </style>
