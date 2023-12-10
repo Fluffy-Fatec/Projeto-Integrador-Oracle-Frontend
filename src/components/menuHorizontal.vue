@@ -6,6 +6,7 @@
             <router-link to="/dashboard">
 
             <v-img
+              @click="refresh"
               alt="Oracle Logo"
               class="oracle-logo mr-5 ml-5"
               src="@/assets/oraclelogo.png"
@@ -147,6 +148,10 @@
       },
     },
     methods: {
+
+    refresh() {
+      window.location.reload();
+    },
       openModal() {
       this.modalNotify = true;
     },
