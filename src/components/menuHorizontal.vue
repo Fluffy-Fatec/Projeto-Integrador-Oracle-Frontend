@@ -3,6 +3,8 @@
   <div class="menuHorizontal">
     <v-app-bar color="#393E3B" top dense fixed dark >
           <div class="d-flex align-center">
+            <router-link to="/dashboard">
+
             <v-img
               alt="Oracle Logo"
               class="oracle-logo mr-5 ml-5"
@@ -10,7 +12,8 @@
               transition="scale-transition"
               width="35"
             />
-           
+          </router-link>    
+
             <span class="negrito-font mr-2">OracleDine</span>
             <span class="normal-font mr-2">|</span>
             <span class="normal-font mr-2">RestaurantName</span>

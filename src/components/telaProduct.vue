@@ -16,7 +16,6 @@
           </v-row>
         </div> 
   
-        <!-- DIV COM FORM E TABELA ESTOQUE -->
         <v-row style=" padding: 10px;">
 
           <!-- FORM ESTOQUE -->
@@ -71,7 +70,7 @@
                               
                             >
                             <thead>
-                              <tr class="cabecalho" style="background-color: #333333">
+                              <tr class="cabecalho" style="background-color: rgb(57 62 59);">
                                 <th style="color: white; text-align: center">ID</th>
                                 <th style="color: white; text-align: center">Supplier Name</th>
                                 <th style="color: white; text-align: center">CNPJ</th>
