@@ -85,19 +85,19 @@ export default {
       //alert(`Você selecionou o item: ${itemTitle}`);
       if (itemTitle == "dashboardSales") {
           //router.push("/dashboard");
-          //window.location.href = "http://localhost:3000/dashboard";
-          window.location.href = "https://oracledinner.vercel.app/dashboard";
+          window.location.href = "http://localhost:3000/dashboard";
+          // window.location.href = "https://oracledinner.vercel.app/dashboard";
           
       }
       if (itemTitle == "dashboardSuppliers") {
           //router.push("/dashboard");
-          //window.location.href = "http://localhost:3000/dashboardSuppliers";
-          window.location.href = "https://oracledinner.vercel.app/dashboardSuppliers";
+          window.location.href = "http://localhost:3000/dashboardSuppliers";
+          // window.location.href = "https://oracledinner.vercel.app/dashboardSuppliers";
       }
       if (itemTitle == "dashboardStock") {
           //router.push("/dashboard");
-          //window.location.href = "http://localhost:3000/dashboardStock";
-          window.location.href = "https://oracledinner.vercel.app/dashboardStock";
+          window.location.href = "http://localhost:3000/dashboardStock";
+          // window.location.href = "https://oracledinner.vercel.app/dashboardStock";
       }
       
       if (itemTitle == "upload") {

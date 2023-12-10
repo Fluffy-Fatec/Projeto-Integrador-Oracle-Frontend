@@ -41,8 +41,6 @@
 
         <v-card-text>
           <v-container>
-         
-
             <v-row v-if="notificationsss.length > 0">
               <v-container fluid>
                 <v-table
@@ -71,7 +69,7 @@
                       v-for="notification in notificationsss"
                         :key="notification.nsId"
                       >
-                        <td>{{ notification.stocks.name }}</td>
+                      <td>{{ capitalizeString(notification.stocks.name) }}</td>
                         <td>{{ formatDate(notification.nsDatetime) }}</td>
                         <td>{{ notification.stocks.amountAvailable }} {{ notification.stocks.measurement }}</td>
                         <td style="text-align: center;">
@@ -82,8 +80,6 @@
                             <i class="fa fa-eye-slash" aria-hidden="true" style="color: #000000; font-size: 20px;"></i>
                           </span>
                         </td>
-
-              
                       </tr>
                     </tbody>
                   </v-table>
@@ -151,6 +147,9 @@
       openModal() {
       this.modalNotify = true;
     },
+    capitalizeString(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  },
     closeModalNotification() {
       this.modalNotify = false;
     },
