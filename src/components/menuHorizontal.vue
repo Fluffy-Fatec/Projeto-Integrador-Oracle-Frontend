@@ -3,19 +3,17 @@
   <div class="menuHorizontal">
     <v-app-bar color="#393E3B" top dense fixed dark >
           <div class="d-flex align-center">
-            <router-link to="/dashboard">
-
+        
             <v-img
-              @click="refresh"
+              @click="handleItemClick()"
               alt="Oracle Logo"
               class="oracle-logo mr-5 ml-5"
               src="@/assets/oraclelogo.png"
               transition="scale-transition"
               width="35"
             />
-          </router-link>    
-
-            <span class="negrito-font mr-2">OracleDine</span>
+         
+           <span class="negrito-font mr-2">OracleDine</span>
             <span class="normal-font mr-2">|</span>
             <span class="normal-font mr-2">RestaurantName</span>
           </div>
@@ -151,6 +149,11 @@
 
     refresh() {
       window.location.reload();
+    },
+
+    handleItemClick() {
+      this.$router.push('/dashboard');
+      setTimeout(() => {this.refresh(); }, 250);
     },
       openModal() {
       this.modalNotify = true;
