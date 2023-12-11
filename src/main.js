@@ -15,7 +15,8 @@ import { createApp } from 'vue'
 import { registerPlugins } from '@/plugins'
 
 // axios.defaults.baseURL =  'http://localhost:8080/'
-axios.defaults.baseURL =  process.env.BACKEND_URL
+axios.defaults.baseURL =  'http://20.55.33.215:8080/'
+
 const app = createApp(App)
 
 registerPlugins(app)
