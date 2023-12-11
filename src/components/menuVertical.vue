@@ -90,24 +90,21 @@ export default {
       if (itemTitle == "dashboardSales") {
           //router.push("/dashboard");
           //window.location.href = "http://localhost:3000/dashboard";
-          this.$router.push('/dashboard');
-          //window.location.href = "https://oracledinner.vercel.app/dashboard";
-          setTimeout(() => {this.refresh(); }, 250);
+          window.location.href = "https://oracledinner.vercel.app/dashboard";
+          this.refresh();
           
       }
       if (itemTitle == "dashboardSuppliers") {
           //router.push("/dashboard");
           //window.location.href = "http://localhost:3000/dashboardSuppliers";
-          this.$router.push('/dashboardSuppliers');
-          //window.location.href = "https://oracledinner.vercel.app/dashboardSuppliers";
-          setTimeout(() => {this.refresh(); }, 250);
+          window.location.href = "https://oracledinner.vercel.app/dashboardSuppliers";
+          this.refresh();
       }
       if (itemTitle == "dashboardStock") {
           //router.push("/dashboard");
           //window.location.href = "http://localhost:3000/dashboardStock";
-          this.$router.push('/dashboardStock');
-          //window.location.href = "https://oracledinner.vercel.app/dashboardStock";
-          setTimeout(() => {this.refresh(); }, 250);
+          window.location.href = "https://oracledinner.vercel.app/dashboardStock";
+          this.refresh();
       }
       
       if (itemTitle == "upload") {
