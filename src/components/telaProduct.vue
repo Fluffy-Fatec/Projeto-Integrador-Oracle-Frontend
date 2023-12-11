@@ -236,10 +236,8 @@
 </template>
 <script>
 import axios from "axios";
-const state = {
-  backendUrl: process.env.BACKEND_URL,
-};
 export default {
+
     name: 'Product',
     data() {
     return {
@@ -298,8 +296,7 @@ export default {
       async deleteSupplierStock(idSupplierOfferValue){
           try{        
             console.log('antes de excluir');
-            
-            const response = await axios.delete(`${state.backendUrl}/supplier-stock-offers/` + idSupplierOfferValue);
+            const response = await axios.delete('supplier-stock-offers/' + idSupplierOfferValue)
             console.log('Item excluído com sucesso', response);
             this.listarItens();
           }
@@ -325,7 +322,7 @@ export default {
         console.log(selectedItemName)
 
 
-        axios.get(`${state.backendUrl}/api/stocks/` + selectedItemName)
+        axios.get('api/stocks/' + selectedItemName)
           .then(response => {
             // Extract the "name" properties  from the response and store them in this.suppliers
             this.itemSupplierss = response.data
